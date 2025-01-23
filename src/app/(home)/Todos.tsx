@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { CheckListItemType } from "../utils/type";
 import CheckListItem from "../component/CheckListItem";
+import EmptyList from "../component/EmptyList";
 
 interface Props {
   items: CheckListItemType[];
@@ -12,27 +13,12 @@ export default function Todos({ items }: Props) {
       <Image src="/image/todo@2x.png" alt="todo" width={101} height={36} />
       {items.length < 1 ? (
         <div className="flex flex-col items-center w-[fit-content] m-[auto]">
-          <div className="md:hidden">
-            <Image
-              src="/image/empty-todo-small@2x.png"
-              alt="empty-todo"
-              width={120}
-              height={120}
-            />
-          </div>
-          <div className="sm:hidden md:block">
-            <Image
-              src="/image/empty-todo-large@2x.png"
-              alt="empty-todo"
-              width={240}
-              height={240}
-            />
-          </div>
-          <div
-            className={`font-bold-16 text-slate-400 text-center whitespace-pre-line`}
-          >
-            할 일이 없어요.{"\n"}TODO를 새롭게 추가해주세요!
-          </div>
+          <EmptyList
+            smallImageUrl={"/image/empty-todo-small@2x.png"}
+            largeImageUrl={"/image/empty-todo-large@2x.png"}
+            description={`할 일이 없어요.\nTODO를 새롭게 추가해주세요!`}
+            alt={"empty todos"}
+          />
         </div>
       ) : (
         <ul className="flex flex-col gap-[16px] mt-[16px]">
