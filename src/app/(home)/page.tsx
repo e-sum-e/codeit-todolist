@@ -3,9 +3,9 @@ import Todos from "./Todos";
 import Dones from "./Dones";
 
 const tempCheckListItems = [
-  { id: "1", title: "비타민 챙겨먹기", isDone: true },
-  { id: "2", title: "맥주 마시기", isDone: true },
-  { id: "3", title: "운동하기", isDone: true },
+  { id: "1", title: "비타민 챙겨먹기", isDone: false },
+  { id: "2", title: "맥주 마시기", isDone: false },
+  { id: "3", title: "운동하기", isDone: false },
 ];
 
 export default function Home() {
