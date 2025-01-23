@@ -43,13 +43,36 @@ export default function Home() {
           style={{ width: "auto", height: "100%" }}
         />
         <ul className="flex flex-col gap-[16px] mt-[16px]">
-          {tempCheckListItems.map((item) => (
-            <CheckListItem
-              key={item.id}
-              title={item.title}
-              isDone={item.isDone}
-            />
-          ))}
+          {tempCheckListItems
+            .filter((item) => item.isDone === false)
+            .map((item) => (
+              <CheckListItem
+                key={item.id}
+                title={item.title}
+                isDone={item.isDone}
+              />
+            ))}
+        </ul>
+      </div>
+      <div className="mt-[48px]">
+        <Image
+          src="/image/done@2x.png"
+          alt="todo"
+          width={0}
+          height={0}
+          sizes="100%"
+          style={{ width: "auto", height: "100%" }}
+        />
+        <ul className="flex flex-col gap-[16px] mt-[16px]">
+          {tempCheckListItems
+            .filter((item) => item.isDone === true)
+            .map((item) => (
+              <CheckListItem
+                key={item.id}
+                title={item.title}
+                isDone={item.isDone}
+              />
+            ))}
         </ul>
       </div>
     </>
