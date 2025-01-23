@@ -1,7 +1,7 @@
 "use client";
 
+import { ButtonType } from "@/app/utils/type";
 import { ReactNode } from "react";
-import { ButtonType } from "./Button";
 
 interface Props {
   icon: ReactNode;
