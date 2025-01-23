@@ -1,6 +1,6 @@
 "use client";
 
-export default function Search() {
+export default function TodoInput() {
   return (
     <input
       className={`flex justify-center items-center gap-[16px]
