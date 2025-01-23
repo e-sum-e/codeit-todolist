@@ -1,13 +1,7 @@
 "use client";
 
 import { ReactNode } from "react";
-
-export enum ButtonType {
-  SECONDARY = "secondary",
-  DANGER = "danger",
-  PRIMARY = "primary",
-  SUCCESS = "success",
-}
+import { ButtonType } from "./Button";
 
 interface Props {
   icon: ReactNode;

@@ -7,6 +7,7 @@ export enum ButtonType {
   DANGER = "danger",
   PRIMARY = "primary",
   SUCCESS = "success",
+  DARK = "dark",
 }
 
 interface Props {
