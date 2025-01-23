@@ -1,10 +1,10 @@
 "use client";
 
-export default function Search() {
+export default function TodoInput() {
   return (
     <input
       className={`flex justify-center items-center gap-[16px]
-    w-[100%] p-[16px_24px]
+    w-[100%] p-[12px_22px]
     border-[2px] border-solid border-slate-900 rounded-[24px]
     shadow-[4px_4px_0_0] shadow-slate-900 font-regular-16
     autofill:color-slate-500

@@ -11,27 +11,25 @@ export default function GNB() {
   };
 
   return (
-    <div className={`flex  p-[10px] md h-[60px] border-b border-slate-200`}>
-      <button className="md:hidden" onClick={logoClick}>
-        <Image
-          src="/image/doit-small@2x.png"
-          alt="logo"
-          width={0}
-          height={0}
-          sizes="100%"
-          style={{ width: "auto", height: "100%" }}
-        />
-      </button>
-      <button className="hidden md:block xl:ml-[350px]" onClick={logoClick}>
-        <Image
-          src="/image/doit-large@2x.png"
-          alt="logo"
-          width={0}
-          height={0}
-          sizes="100%"
-          style={{ width: "auto", height: "100%" }}
-        />
-      </button>
-    </div>
+    <header className={`flex p-[10px] h-[60px] border-b border-slate-200`}>
+      <div className="w-[100%] m-[auto] xl:max-w-[1200px]">
+        <button className="md:hidden" onClick={logoClick}>
+          <Image
+            src="/image/doit-small@2x.png"
+            alt="logo"
+            width={71}
+            height={40}
+          />
+        </button>
+        <button className="hidden md:block" onClick={logoClick}>
+          <Image
+            src="/image/doit-large@2x.png"
+            alt="logo"
+            width={151}
+            height={40}
+          />
+        </button>
+      </div>
+    </header>
   );
 }
