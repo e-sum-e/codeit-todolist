@@ -34,14 +34,7 @@ export default function Home() {
         />
       </div>
       <div className="mt-[24px]">
-        <Image
-          src="/image/todo@2x.png"
-          alt="todo"
-          width={0}
-          height={0}
-          sizes="100%"
-          style={{ width: "auto", height: "100%" }}
-        />
+        <Image src="/image/todo@2x.png" alt="todo" width={101} height={36} />
         <ul className="flex flex-col gap-[16px] mt-[16px]">
           {tempCheckListItems
             .filter((item) => item.isDone === false)
@@ -55,14 +48,7 @@ export default function Home() {
         </ul>
       </div>
       <div className="mt-[48px]">
-        <Image
-          src="/image/done@2x.png"
-          alt="todo"
-          width={0}
-          height={0}
-          sizes="100%"
-          style={{ width: "auto", height: "100%" }}
-        />
+        <Image src="/image/done@2x.png" alt="todo" width={101} height={36} />
         <ul className="flex flex-col gap-[16px] mt-[16px]">
           {tempCheckListItems
             .filter((item) => item.isDone === true)
