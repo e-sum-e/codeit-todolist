@@ -34,6 +34,11 @@ export default {
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
+    screens: {
+      sm: "375px", // => @media (min-width: 375px)
+      md: "744px", // => @media (min-width: 744px). for ipad mini
+      xl: "1920px", // => @media (min-width: 1920px). for FHD
+    },
     extend: {
       colors: {
         background: "var(--background)",
@@ -48,6 +53,7 @@ export default {
           primary: violet["600"],
           danger: rose["500"],
           success: lime["300"],
+          dark: slate["900"],
         },
       },
       fontFamily: {
@@ -67,6 +73,7 @@ export default {
     "bg-button-danger",
     "bg-button-primary",
     "bg-button-success",
+    "bg-button-dark",
   ],
   plugins: [],
 } satisfies Config;
