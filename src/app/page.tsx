@@ -14,7 +14,7 @@ const tempCheckListItems = [
 export default function Home() {
   return (
     <>
-      <div className="flex gap-[8px] md:gap-[16px]">
+      <div className="flex gap-[8px]  md:gap-[16px]">
         <TodoInput />
         <TextButton
           icon={
