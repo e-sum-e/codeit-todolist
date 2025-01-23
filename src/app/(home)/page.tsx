@@ -1,10 +1,10 @@
-import TextButton from "./component/Button/TextButton";
-import TodoInput from "./component/TodoInput";
-import PlusWhiteIcon from "../assets/icon/plus-white.svg";
-import PlusBlackIcon from "../assets/icon/plus-black.svg";
-import { ButtonType } from "./utils/type";
+import TextButton from "../component/Button/TextButton";
+import TodoInput from "../component/TodoInput";
+import PlusWhiteIcon from "../../assets/icon/plus-white.svg";
+import PlusBlackIcon from "../../assets/icon/plus-black.svg";
+import { ButtonType } from "../utils/type";
 import Image from "next/image";
-import CheckListItem from "./component/CheckListItem";
+import CheckListItem from "../component/CheckListItem";
 
 const tempCheckListItems = [
   { id: "1", title: "비타민 챙겨먹기", isDone: true },
