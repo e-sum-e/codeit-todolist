@@ -6,7 +6,7 @@ export enum ButtonType {
   DARK = "dark",
 }
 
-export type CheckListItem = {
+export type CheckListItemType = {
   id: string;
   title: string;
   isDone: boolean;
