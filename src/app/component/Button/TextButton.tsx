@@ -15,7 +15,7 @@ interface Props {
   type: ButtonType;
 }
 
-export default function Button({ icon, text, type }: Props) {
+export default function TextButton({ icon, text, type }: Props) {
   return (
     <button
       className={`inline-flex justify-center items-center gap-[4px] leading-[18px]

@@ -48,6 +48,7 @@ export default {
           primary: violet["600"],
           danger: rose["500"],
           success: lime["300"],
+          dark: slate["900"],
         },
       },
       fontFamily: {
@@ -67,6 +68,7 @@ export default {
     "bg-button-danger",
     "bg-button-primary",
     "bg-button-success",
+    "bg-button-dark",
   ],
   plugins: [],
 } satisfies Config;
