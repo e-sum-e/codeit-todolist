@@ -11,7 +11,7 @@ export default function GNB() {
   };
 
   return (
-    <div className={`flex  p-[10px] md h-[60px] border-b border-slate-200`}>
+    <header className={`flex  p-[10px] md h-[60px] border-b border-slate-200`}>
       <button className="md:hidden" onClick={logoClick}>
         <Image
           src="/image/doit-small@2x.png"
@@ -32,6 +32,6 @@ export default function GNB() {
           style={{ width: "auto", height: "100%" }}
         />
       </button>
-    </div>
+    </header>
   );
 }
