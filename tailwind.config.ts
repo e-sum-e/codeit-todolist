@@ -34,6 +34,11 @@ export default {
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
+    screens: {
+      sm: "375px", // => @media (min-width: 375px)
+      md: "744px", // => @media (min-width: 744px). for ipad mini
+      xl: "1920px", // => @media (min-width: 1920px). for FHD
+    },
     extend: {
       colors: {
         background: "var(--background)",
