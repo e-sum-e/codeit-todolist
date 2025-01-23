@@ -14,7 +14,7 @@ const tempCheckListItems = [
 export default function Home() {
   return (
     <>
-      <div className="flex gap-[8px]">
+      <div className="flex gap-[8px] md:gap-[16px]">
         <TodoInput />
         <TextButton
           icon={
@@ -30,7 +30,7 @@ export default function Home() {
               : ButtonType.PRIMARY
           }
           text={"추가하기"}
-          style={"flex-none text-white"}
+          style={`flex-none ${tempCheckListItems.length === 0 && "text-white"}`}
         />
       </div>
       <div className="mt-[24px]">
