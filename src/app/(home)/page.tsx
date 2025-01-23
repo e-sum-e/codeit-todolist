@@ -1,38 +1,17 @@
-import TextButton from "../component/Button/TextButton";
-import TodoInput from "../component/TodoInput";
-import PlusWhiteIcon from "../../assets/icon/plus-white.svg";
-import PlusBlackIcon from "../../assets/icon/plus-black.svg";
-import { ButtonType } from "../utils/type";
 import Image from "next/image";
 import CheckListItem from "../component/CheckListItem";
+import AddTodo from "./AddTodo";
 
 const tempCheckListItems = [
   { id: "1", title: "비타민 챙겨먹기", isDone: true },
   { id: "2", title: "맥주 마시기", isDone: false },
   { id: "3", title: "운동하기", isDone: false },
 ];
+
 export default function Home() {
   return (
     <>
-      <div className="flex gap-[8px]  md:gap-[16px]">
-        <TodoInput />
-        <TextButton
-          icon={
-            tempCheckListItems.length > 0 ? (
-              <PlusBlackIcon />
-            ) : (
-              <PlusWhiteIcon />
-            )
-          }
-          type={
-            tempCheckListItems.length > 0
-              ? ButtonType.SECONDARY
-              : ButtonType.PRIMARY
-          }
-          text={"추가하기"}
-          style={`flex-none ${tempCheckListItems.length === 0 && "text-white"}`}
-        />
-      </div>
+      <AddTodo checkListItems={tempCheckListItems} />
       <div className={`flex flex-col xl:flex-row xl:gap-[24px] xl:mt-[40px]`}>
         <div className="mt-[24px] xl:mt-0 xl:w-[588px]">
           <Image src="/image/todo@2x.png" alt="todo" width={101} height={36} />
