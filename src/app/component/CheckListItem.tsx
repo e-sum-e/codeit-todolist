@@ -8,11 +8,17 @@ interface Props {
   id: number;
   name: string;
   isCompleted: boolean;
+  toggleIsCompleted: (id: number) => void;
 }
 
-export default function CheckListItem({ id, name, isCompleted }: Props) {
+export default function CheckListItem({
+  id,
+  name,
+  isCompleted,
+  toggleIsCompleted,
+}: Props) {
   const toggleIsDone = () => {
-    // setIsDone(!isDone);
+    toggleIsCompleted(id);
   };
 
   return (
@@ -27,7 +33,7 @@ export default function CheckListItem({ id, name, isCompleted }: Props) {
       >
         {isCompleted ? <CheckBoxIcon /> : <DefaultCheckboxIcon />}
       </button>
-      <Link href={`/${id}`} className="">
+      <Link href={`/${id}`} className="w-[100%]">
         {name}
       </Link>
     </li>

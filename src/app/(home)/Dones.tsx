@@ -5,10 +5,10 @@ import EmptyList from "../component/EmptyList";
 
 interface Props {
   items: TodoType[];
+  toggleIsCompleted: (id: number) => void;
 }
 
-export default function Dones({ items }: Props) {
-  console.log(items);
+export default function Dones({ items, toggleIsCompleted }: Props) {
   return (
     <div className="mt-[48px] xl:w-[588px] xl:mt-0">
       <Image src="/image/done@2x.png" alt="todo" width={101} height={36} />
@@ -29,6 +29,7 @@ export default function Dones({ items }: Props) {
               key={item.id}
               name={item.name}
               isCompleted={item.isCompleted}
+              toggleIsCompleted={toggleIsCompleted}
             />
           ))}
         </ul>
