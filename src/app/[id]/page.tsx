@@ -4,13 +4,19 @@ import Image from "next/image";
 import DetailCheckListItem from "../component/DetailCheckLIstItem";
 import PlusVarintIcon from "../../assets/icon/plus-variant.svg";
 
-export default function page() {
+interface Props {
+  description: string;
+}
+
+export default function page({
+  description = "오메가 3, 프로폴리스, 아연 챙겨먹기",
+}: Props) {
   return (
     <div className={`xl:px-[102px]`}>
       <DetailCheckListItem title={"비타민 챙겨먹기"} />
       <div className={`flex flex-col xl:flex-row xl:gap-[24px] mt-[17px]`}>
         <div
-          className={`flex justify-center items-center relative xl:w-[384px] h-[311px]
+          className={`flex justify-center items-center relative xl:flex-none xl:w-[384px] h-[311px]
           rounded-[24px] border-[2px] border-dashed border-slate-300
           bg-slate-50`}
         >
@@ -33,6 +39,18 @@ export default function page() {
               accept="image/*"
             />
           </form>
+        </div>
+        <div
+          className={`flex flex-col justify-center items-center relative
+            xl:w-[100%] h-[311px] mt-[15px] md:mt-[24px] xl:mt-0
+            rounded-[24px] bg-[url("/image/memo.png")] bg-center`}
+        >
+          <div
+            className={`absolute top-[24px] text-extra-bold-16 text-amber-800`}
+          >
+            Memo
+          </div>
+          <div className="text-regular-16">{description}</div>
         </div>
       </div>
     </div>
