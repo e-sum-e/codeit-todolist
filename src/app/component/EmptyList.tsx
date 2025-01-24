@@ -18,7 +18,7 @@ export default function EmptyList({
       <div className="md:hidden">
         <Image src={smallImageUrl} alt="empty-todo" width={120} height={120} />
       </div>
-      <div className="sm:hidden md:block">
+      <div className="hidden md:block">
         <Image src={largeImageUrl} alt={alt} width={240} height={240} />
       </div>
       <div
