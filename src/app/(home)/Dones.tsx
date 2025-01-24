@@ -25,8 +25,8 @@ export default function Dones({ items }: Props) {
           {items.map((item) => (
             <CheckListItem
               key={item.id}
-              title={item.title}
-              isDone={item.isDone}
+              title={item.name}
+              isDone={item.isCompleted}
             />
           ))}
         </ul>

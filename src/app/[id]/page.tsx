@@ -62,12 +62,14 @@ export default function page() {
           type={ButtonType.SECONDARY}
           text={"수정 완료"}
           style={"w-[168px]"}
+          onClick={() => {}}
         />
         <TextButton
           icon={<XIcon />}
           type={ButtonType.DANGER}
           text={"삭제하기"}
           style="w-[168px] text-white"
+          onClick={() => {}}
         />
       </div>
     </div>

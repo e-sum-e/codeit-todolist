@@ -6,10 +6,17 @@ export enum ButtonType {
   DARK = "dark",
 }
 
+export type AddTodoType = {
+  name: string;
+};
+
 export type TodoType = {
-  id: string;
-  title: string;
-  isDone: boolean;
+  id: number;
+  tenantId: string;
+  name: string;
+  memo: string;
+  imageUrl: string;
+  isCompleted: boolean;
 };
 
 export const seomiId = "e-sum-e";

@@ -27,8 +27,8 @@ export default function Home() {
     <>
       <AddTodo checkListItems={todos} />
       <div className={`flex flex-col xl:flex-row xl:gap-[24px] xl:mt-[40px]`}>
-        <Todos items={todos.filter((item) => item.isDone === false)} />
-        <Dones items={todos.filter((item) => item.isDone === true)} />
+        <Todos items={todos.filter((item) => item.isCompleted === false)} />
+        <Dones items={todos.filter((item) => item.isCompleted === true)} />
       </div>
     </>
   );
