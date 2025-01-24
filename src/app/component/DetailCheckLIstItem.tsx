@@ -5,11 +5,11 @@ import CheckBoxIcon from "../../assets/icon/checkbox.svg";
 import { useState } from "react";
 
 interface Props {
-  title: string;
+  name: string;
   // isDone: boolean;
 }
 
-export default function DetailCheckListItem({ title }: Props) {
+export default function DetailCheckListItem({ name: title }: Props) {
   const [isDone, setIsDone] = useState(false);
 
   const toggleIsDone = () => {

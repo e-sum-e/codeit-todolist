@@ -25,8 +25,9 @@ export default function Todos({ items }: Props) {
           {items.map((item) => (
             <CheckListItem
               key={item.id}
-              title={item.name}
-              isDone={item.isCompleted}
+              id={item.id}
+              name={item.name}
+              isCompleted={item.isCompleted}
             />
           ))}
         </ul>

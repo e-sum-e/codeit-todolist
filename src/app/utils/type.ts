@@ -12,10 +12,9 @@ export type AddTodoType = {
 
 export type TodoType = {
   id: number;
-  tenantId: string;
   name: string;
-  memo: string;
-  imageUrl: string;
+  memo?: string;
+  imageUrl?: string;
   isCompleted: boolean;
 };
 

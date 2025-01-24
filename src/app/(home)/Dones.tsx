@@ -8,6 +8,7 @@ interface Props {
 }
 
 export default function Dones({ items }: Props) {
+  console.log(items);
   return (
     <div className="mt-[48px] xl:w-[588px] xl:mt-0">
       <Image src="/image/done@2x.png" alt="todo" width={101} height={36} />
@@ -24,9 +25,10 @@ export default function Dones({ items }: Props) {
         <ul className="flex flex-col gap-[16px] mt-[16px]">
           {items.map((item) => (
             <CheckListItem
+              id={item.id}
               key={item.id}
-              title={item.name}
-              isDone={item.isCompleted}
+              name={item.name}
+              isCompleted={item.isCompleted}
             />
           ))}
         </ul>
