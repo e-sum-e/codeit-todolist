@@ -5,7 +5,12 @@ import XIcon from "../../assets/icon/x.svg";
 import TextButton from "../component/Button/TextButton";
 import { ButtonType } from "../utils/type";
 
-export default function Buttons() {
+interface Props {
+  onSubmit: () => void;
+  onCancel: () => void;
+}
+
+export default function Buttons({ onSubmit, onCancel }: Props) {
   return (
     <div
       className="flex xl:justify-self-end gap-[10px] md:gap-[16px] w-fit
@@ -16,14 +21,14 @@ export default function Buttons() {
         type={ButtonType.SECONDARY}
         text={"수정 완료"}
         style={"w-[168px]"}
-        onClick={() => {}}
+        onClick={onSubmit}
       />
       <TextButton
         icon={<XIcon />}
         type={ButtonType.DANGER}
         text={"삭제하기"}
         style="w-[168px] text-white"
-        onClick={() => {}}
+        onClick={onCancel}
       />
     </div>
   );
