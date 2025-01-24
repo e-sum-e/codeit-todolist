@@ -16,7 +16,7 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <GNB />
-        <section className="flex flex-col m-[auto] p-[16px] xl:px-0 xl:max-w-[1200px]">
+        <section className="flex flex-col m-[auto] p-[16px] md:p-[24px] xl:px-0 xl:max-w-[1200px]">
           {children}
         </section>
       </body>
