@@ -1,13 +1,14 @@
 import Image from "next/image";
-import { CheckListItemType } from "../utils/type";
+import { TodoType } from "../utils/type";
 import CheckListItem from "../component/CheckListItem";
 import EmptyList from "../component/EmptyList";
 
 interface Props {
-  items: CheckListItemType[];
+  items: TodoType[];
 }
 
 export default function Dones({ items }: Props) {
+  console.log(items);
   return (
     <div className="mt-[48px] xl:w-[588px] xl:mt-0">
       <Image src="/image/done@2x.png" alt="todo" width={101} height={36} />
@@ -24,9 +25,10 @@ export default function Dones({ items }: Props) {
         <ul className="flex flex-col gap-[16px] mt-[16px]">
           {items.map((item) => (
             <CheckListItem
+              id={item.id}
               key={item.id}
-              title={item.title}
-              isDone={item.isDone}
+              name={item.name}
+              isCompleted={item.isCompleted}
             />
           ))}
         </ul>

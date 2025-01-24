@@ -1,6 +1,11 @@
 "use client";
 
-export default function TodoInput() {
+interface Props {
+  todo: string;
+  changeTodo: (nextTodo: string) => void;
+}
+
+export default function TodoInput({ todo, changeTodo }: Props) {
   return (
     <input
       className={`flex justify-center items-center gap-[16px]
@@ -10,6 +15,8 @@ export default function TodoInput() {
     autofill:color-slate-500
     font-normal
     `}
+      onChange={(e) => changeTodo(e.target.value)}
+      value={todo}
       placeholder="할 일을 입력해주세요"
     />
   );

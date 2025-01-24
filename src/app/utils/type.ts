@@ -6,8 +6,23 @@ export enum ButtonType {
   DARK = "dark",
 }
 
-export type CheckListItemType = {
-  id: string;
-  title: string;
-  isDone: boolean;
+export type AddTodoType = {
+  name: string;
 };
+
+export type TodoType = {
+  id: number;
+  name: string;
+  memo?: string;
+  imageUrl: string | null;
+  isCompleted: boolean;
+};
+
+export const seomiId = "e-sum-e";
+
+export interface EditedData {
+  name: string;
+  memo: string;
+  isCompleted: boolean;
+  imageUrl?: string;
+}

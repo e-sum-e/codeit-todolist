@@ -8,9 +8,16 @@ interface Props {
   text?: string;
   type: ButtonType;
   style?: string;
+  onClick: () => void;
 }
 
-export default function TextButton({ icon, text, type, style }: Props) {
+export default function TextButton({
+  icon,
+  text,
+  type,
+  style,
+  onClick,
+}: Props) {
   return (
     <button
       className={`inline-flex justify-center items-center gap-[4px] leading-[18px]
@@ -20,6 +27,7 @@ export default function TextButton({ icon, text, type, style }: Props) {
         bg-button-${type}
         ${style}
         `}
+      onClick={onClick}
     >
       {icon}
       <div>{text}</div>

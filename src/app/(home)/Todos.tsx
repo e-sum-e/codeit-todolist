@@ -1,10 +1,10 @@
 import Image from "next/image";
-import { CheckListItemType } from "../utils/type";
+import { TodoType } from "../utils/type";
 import CheckListItem from "../component/CheckListItem";
 import EmptyList from "../component/EmptyList";
 
 interface Props {
-  items: CheckListItemType[];
+  items: TodoType[];
 }
 
 export default function Todos({ items }: Props) {
@@ -25,8 +25,9 @@ export default function Todos({ items }: Props) {
           {items.map((item) => (
             <CheckListItem
               key={item.id}
-              title={item.title}
-              isDone={item.isDone}
+              id={item.id}
+              name={item.name}
+              isCompleted={item.isCompleted}
             />
           ))}
         </ul>
