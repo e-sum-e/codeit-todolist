@@ -8,13 +8,9 @@ import XIcon from "../../assets/icon/x.svg";
 import TextButton from "../component/Button/TextButton";
 import { ButtonType } from "../utils/type";
 
-interface Props {
-  description: string;
-}
+export default function page() {
+  const description = "오메가 3, 프로폴리스, 아연 챙겨먹기";
 
-export default function page({
-  description = "오메가 3, 프로폴리스, 아연 챙겨먹기",
-}: Props) {
   return (
     <div className={`xl:px-[102px]`}>
       <DetailCheckListItem title={"비타민 챙겨먹기"} />
