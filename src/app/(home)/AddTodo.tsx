@@ -20,7 +20,9 @@ export default function AddTodo({ checkListItems }: Props) {
           checkListItems.length > 0 ? ButtonType.SECONDARY : ButtonType.PRIMARY
         }
         text={"추가하기"}
-        style={`flex-none ${checkListItems.length === 0 && "text-white"}`}
+        style={`flex-none [&>div]:hidden [&>div]:md:block ${
+          checkListItems.length === 0 && "text-white"
+        }`}
       />
     </div>
   );
