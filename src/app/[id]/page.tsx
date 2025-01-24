@@ -3,6 +3,10 @@
 import Image from "next/image";
 import DetailCheckListItem from "../component/DetailCheckLIstItem";
 import PlusVarintIcon from "../../assets/icon/plus-variant.svg";
+import CheckIcon from "../../assets/icon/check.svg";
+import XIcon from "../../assets/icon/x.svg";
+import TextButton from "../component/Button/TextButton";
+import { ButtonType } from "../utils/type";
 
 interface Props {
   description: string;
@@ -52,6 +56,23 @@ export default function page({
           </div>
           <div className="text-regular-16">{description}</div>
         </div>
+      </div>
+      <div
+        className="flex xl:justify-self-end gap-[10px] md:gap-[16px] w-fit
+      mt-[24px] mx-[auto] xl:mx-0"
+      >
+        <TextButton
+          icon={<CheckIcon />}
+          type={ButtonType.SECONDARY}
+          text={"수정 완료"}
+          style={"w-[168px]"}
+        />
+        <TextButton
+          icon={<XIcon />}
+          type={ButtonType.DANGER}
+          text={"삭제하기"}
+          style="w-[168px] text-white"
+        />
       </div>
     </div>
   );
