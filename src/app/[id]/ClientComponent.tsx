@@ -2,7 +2,7 @@
 
 import DetailCheckListItem from "../component/DetailCheckLIstItem";
 
-import { seomiId, TodoType } from "../utils/type";
+import { EditedData, seomiId, TodoType } from "../utils/type";
 import { useEffect, useState } from "react";
 import AddImage from "./AddImage";
 import AddMemo from "./AddMemo";
@@ -34,34 +34,47 @@ export default function ClientComponent({ id }: Props) {
     setIsCompleted(!isCompleted);
   };
 
+  const onChangeMemo = (nextMemo: string) => {
+    setMemo(nextMemo);
+  };
+
   const onSubmit = async () => {
-    const formData = new FormData();
-    formData.append("image", imageFile ?? "");
+    let editedData: EditedData;
 
     try {
-      const formDataResponse = await fetch(
-        `https://assignment-todolist-api.vercel.app/api/${seomiId}/images/upload`,
-        {
-          method: "POST",
-          body: formData,
+      if (imageFile !== null) {
+        const formData = new FormData();
+        formData.append("image", imageFile ?? "");
+        const formDataResponse = await fetch(
+          `https://assignment-todolist-api.vercel.app/api/${seomiId}/images/upload`,
+          {
+            method: "POST",
+            body: formData,
+          }
+        );
+
+        if (!formDataResponse.ok) {
+          const errorResponse = await formDataResponse.json();
+          console.log("Image upload failed:", errorResponse);
+          return;
         }
-      );
 
-      if (!formDataResponse.ok) {
-        const errorResponse = await formDataResponse.json();
-        console.log("Image upload failed:", errorResponse);
-        return;
+        const uploadImageResult = await formDataResponse.json();
+        const imageUrl = uploadImageResult.url;
+
+        editedData = {
+          name,
+          memo,
+          isCompleted,
+          imageUrl,
+        };
+      } else {
+        editedData = {
+          name,
+          memo,
+          isCompleted,
+        };
       }
-
-      const uploadImageResult = await formDataResponse.json();
-      const imageUrl = uploadImageResult.url;
-
-      const editedData = {
-        name,
-        memo,
-        isCompleted,
-        imageUrl,
-      };
 
       const jsonResponse = await fetch(
         `https://assignment-todolist-api.vercel.app/api/${seomiId}/items/${id}`,
@@ -123,7 +136,7 @@ export default function ClientComponent({ id }: Props) {
           imageFile={imageFile}
           onChangeImageFile={onChangeImageFile}
         />
-        <AddMemo memo={memo} />
+        <AddMemo memo={memo} onChangeMemo={onChangeMemo} />
       </div>
       <Buttons onSubmit={onSubmit} onCancel={onCancel} />
     </div>

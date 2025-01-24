@@ -19,3 +19,10 @@ export type TodoType = {
 };
 
 export const seomiId = "e-sum-e";
+
+export interface EditedData {
+  name: string;
+  memo: string;
+  isCompleted: boolean;
+  imageUrl?: string;
+}
