@@ -2,7 +2,7 @@
 
 import TextButton from "../component/Button/TextButton";
 import TodoInput from "../component/TodoInput";
-import { AddTodoType, ButtonType, seomiId, TodoType } from "../utils/type";
+import { ButtonType, seomiId, TodoType } from "../utils/type";
 import PlusWhiteIcon from "../../assets/icon/plus-white.svg";
 import PlusBlackIcon from "../../assets/icon/plus-black.svg";
 import { useState } from "react";
@@ -19,11 +19,7 @@ export default function AddTodo({ checkListItems }: Props) {
   };
 
   const onSubmit = async () => {
-    const todo: AddTodoType = {
-      name: todoText,
-    };
-
-    const response = await (
+    try {
       await fetch(
         `https://assignment-todolist-api.vercel.app/api/${seomiId}/items`,
         {
@@ -31,13 +27,13 @@ export default function AddTodo({ checkListItems }: Props) {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(todo),
+          body: JSON.stringify({ name: todoText }),
+          cache: "no-store",
         }
-      )
-    ).json();
-
-    if (!response.ok) {
-      console.log(response);
+      );
+      window.location.reload();
+    } catch (error) {
+      console.error(error);
     }
   };
 

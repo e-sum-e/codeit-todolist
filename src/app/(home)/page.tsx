@@ -13,7 +13,8 @@ export default function Home() {
     const fetchTodos = async () => {
       const response = await (
         await fetch(
-          `https://assignment-todolist-api.vercel.app/api/${seomiId}/items`
+          `https://assignment-todolist-api.vercel.app/api/${seomiId}/items`,
+          { cache: "no-store" }
         )
       ).json();
 
