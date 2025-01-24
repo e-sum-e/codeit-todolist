@@ -14,7 +14,7 @@ export type TodoType = {
   id: number;
   name: string;
   memo?: string;
-  imageUrl?: string;
+  imageUrl: string | null;
   isCompleted: boolean;
 };
 

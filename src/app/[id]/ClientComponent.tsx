@@ -18,11 +18,16 @@ export default function ClientComponent({ id }: Props) {
   const [name, setName] = useState("");
   const [memo, setMemo] = useState("");
   const [isCompleted, setIsCompleted] = useState(false);
-  const [imageUrl, setImageUrl] = useState("");
+  const [imageFile, setImageFile] = useState<File | null>(null);
+  const [imageUrl, setImageUrl] = useState<string | null>(null);
   const router = useRouter();
 
   const onChangeName = (nextName: string) => {
     setName(nextName);
+  };
+
+  const onChangeImageFile = (nextImage: File) => {
+    setImageFile(nextImage);
   };
 
   const toggleIsCompleted = () => {
@@ -30,28 +35,53 @@ export default function ClientComponent({ id }: Props) {
   };
 
   const onSubmit = async () => {
-    const editedData = {
-      name,
-      memo,
-      isCompleted,
-      imageUrl,
-    };
+    const formData = new FormData();
+    formData.append("image", imageFile ?? "");
 
-    const response = await fetch(
-      `https://assignment-todolist-api.vercel.app/api/${seomiId}/items/${id}`,
-      {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(editedData),
+    try {
+      const formDataResponse = await fetch(
+        `https://assignment-todolist-api.vercel.app/api/${seomiId}/images/upload`,
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
+
+      if (!formDataResponse.ok) {
+        const errorResponse = await formDataResponse.json();
+        console.log("Image upload failed:", errorResponse);
+        return;
       }
-    );
 
-    if (response.ok) {
+      const uploadImageResult = await formDataResponse.json();
+      const imageUrl = uploadImageResult.url;
+
+      const editedData = {
+        name,
+        memo,
+        isCompleted,
+        imageUrl,
+      };
+
+      const jsonResponse = await fetch(
+        `https://assignment-todolist-api.vercel.app/api/${seomiId}/items/${id}`,
+        {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(editedData),
+        }
+      );
+
+      if (!jsonResponse.ok) {
+        const errorResponse = await jsonResponse.json();
+        console.log("Item update failed:", errorResponse);
+        return;
+      }
       router.push("/");
-    } else {
-      console.log(response);
+    } catch (error) {
+      console.error(error);
     }
   };
 
@@ -71,7 +101,7 @@ export default function ClientComponent({ id }: Props) {
       setName(response.name);
       setMemo(response.memo ?? "");
       setIsCompleted(response.isCompleted);
-      setImageUrl(response.imageUrl ?? "");
+      setImageUrl(response.imageUrl);
     };
 
     fetchTodos();
@@ -88,7 +118,11 @@ export default function ClientComponent({ id }: Props) {
         toggleIsCompleted={toggleIsCompleted}
       />
       <div className={`flex flex-col xl:flex-row xl:gap-[24px] mt-[17px]`}>
-        <AddImage />
+        <AddImage
+          imageUrl={imageUrl}
+          imageFile={imageFile}
+          onChangeImageFile={onChangeImageFile}
+        />
         <AddMemo memo={memo} />
       </div>
       <Buttons onSubmit={onSubmit} onCancel={onCancel} />
