@@ -22,7 +22,7 @@ export default function TextButton({ icon, text, type, style }: Props) {
         `}
     >
       {icon}
-      <div className="hidden md:block">{text}</div>
+      <div>{text}</div>
     </button>
   );
 }

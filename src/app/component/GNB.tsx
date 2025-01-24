@@ -12,7 +12,12 @@ export default function GNB() {
 
   return (
     <header className={`flex p-[10px] h-[60px] border-b border-slate-200`}>
-      <div className="w-[100%] m-[auto] xl:max-w-[1200px]">
+      <div
+        className="w-[375px]
+        md:w-[744px]
+        xl:w-[1200px]
+        mx-auto"
+      >
         <button className="md:hidden" onClick={logoClick}>
           <Image
             src="/image/doit-small@2x.png"
