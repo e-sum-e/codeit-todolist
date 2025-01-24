@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import PlusVarintIcon from "../../assets/icon/plus-variant.svg";
+import EditIcon from "../../assets/icon/edit.svg";
 import { useState } from "react";
 
 interface Props {
@@ -48,10 +49,15 @@ export default function AddImage({ imageUrl, onChangeImageFile }: Props) {
         <div
           className={`flex justify-center items-center w-[64px] h-[64px]
         absolute bottom-[16px] right-[16px]
-        bg-slate-200 rounded-[50%]
+        ${
+          imageUrl === null
+            ? "bg-slate-200"
+            : "bg-slate-900 bg-opacity-50 border-solid border-[2px] border-slate-900"
+        }
+         rounded-[50%]
         [&>svg]:w-[24px] [&>svg]:h-[24px] `}
         >
-          <PlusVarintIcon />
+          {imageUrl === null ? <PlusVarintIcon /> : <EditIcon />}
         </div>
       </label>
       <form>
