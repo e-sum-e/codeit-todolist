@@ -1,10 +1,10 @@
 import Image from "next/image";
-import { CheckListItemType } from "../utils/type";
+import { TodoType } from "../utils/type";
 import CheckListItem from "../component/CheckListItem";
 import EmptyList from "../component/EmptyList";
 
 interface Props {
-  items: CheckListItemType[];
+  items: TodoType[];
 }
 
 export default function Dones({ items }: Props) {

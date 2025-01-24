@@ -2,12 +2,12 @@
 
 import TextButton from "../component/Button/TextButton";
 import TodoInput from "../component/TodoInput";
-import { ButtonType, CheckListItemType } from "../utils/type";
+import { ButtonType, TodoType } from "../utils/type";
 import PlusWhiteIcon from "../../assets/icon/plus-white.svg";
 import PlusBlackIcon from "../../assets/icon/plus-black.svg";
 
 interface Props {
-  checkListItems: CheckListItemType[];
+  checkListItems: TodoType[];
 }
 
 export default function AddTodo({ checkListItems }: Props) {
