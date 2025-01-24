@@ -98,8 +98,19 @@ export default function ClientComponent({ id }: Props) {
     }
   };
 
-  const onCancel = () => {
-    router.back();
+  const onDelete = async () => {
+    try {
+      await fetch(
+        `https://assignment-todolist-api.vercel.app/api/${seomiId}/items/${id}`,
+        {
+          method: "DELETE",
+        }
+      );
+
+      router.back();
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   useEffect(() => {
@@ -138,7 +149,7 @@ export default function ClientComponent({ id }: Props) {
         />
         <AddMemo memo={memo} onChangeMemo={onChangeMemo} />
       </div>
-      <Buttons onSubmit={onSubmit} onCancel={onCancel} />
+      <Buttons onSubmit={onSubmit} onDelete={onDelete} />
     </div>
   );
 }

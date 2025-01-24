@@ -7,10 +7,10 @@ import { ButtonType } from "../utils/type";
 
 interface Props {
   onSubmit: () => void;
-  onCancel: () => void;
+  onDelete: () => void;
 }
 
-export default function Buttons({ onSubmit, onCancel }: Props) {
+export default function Buttons({ onSubmit, onDelete }: Props) {
   return (
     <div
       className="flex xl:justify-self-end gap-[10px] md:gap-[16px] w-fit
@@ -28,7 +28,7 @@ export default function Buttons({ onSubmit, onCancel }: Props) {
         type={ButtonType.DANGER}
         text={"삭제하기"}
         style="w-[168px] text-white"
-        onClick={onCancel}
+        onClick={onDelete}
       />
     </div>
   );
