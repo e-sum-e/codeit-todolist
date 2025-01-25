@@ -2,10 +2,11 @@
 
 import TextButton from "../component/Button/TextButton";
 import TodoInput from "../component/TodoInput";
-import { ButtonType, seomiId, TodoType } from "../utils/type";
+import { ButtonType, TodoType } from "../utils/type";
 import PlusWhiteIcon from "../../assets/icon/plus-white.svg";
 import PlusBlackIcon from "../../assets/icon/plus-black.svg";
 import { useState } from "react";
+import { HTTPHeaders, HTTPMethods, request } from "../utils/request";
 
 interface Props {
   checkListItems: TodoType[];
@@ -23,24 +24,16 @@ export default function AddTodo({ checkListItems, setTodos }: Props) {
     e.preventDefault();
 
     try {
-      await fetch(
-        `https://assignment-todolist-api.vercel.app/api/${seomiId}/items`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ name: todoText }),
-        }
+      await request(
+        "/items",
+        HTTPMethods.POST,
+        HTTPHeaders.JSON,
+        JSON.stringify({ name: todoText })
       );
+      const response = await request("/items", HTTPMethods.GET);
+      const responseValue = await response.json();
 
-      const response = await (
-        await fetch(
-          `https://assignment-todolist-api.vercel.app/api/${seomiId}/items`
-        )
-      ).json();
-
-      setTodos(response);
+      setTodos(responseValue);
       changeTodoText("");
     } catch (error) {
       console.error(error);

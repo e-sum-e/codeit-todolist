@@ -3,8 +3,9 @@
 import AddTodo from "./AddTodo";
 import Todos from "./Todos";
 import Dones from "./Dones";
-import { seomiId, TodoType } from "../utils/type";
+import { TodoType } from "../utils/type";
 import { useEffect, useState } from "react";
+import { HTTPHeaders, HTTPMethods, request } from "../utils/request";
 
 export default function Home() {
   const [todos, setTodos] = useState<TodoType[]>([]);
@@ -23,21 +24,12 @@ export default function Home() {
 
       setTodos(updatedTodos);
 
-      const response = await fetch(
-        `https://assignment-todolist-api.vercel.app/api/${seomiId}/items/${id}`,
-        {
-          method: "PATCH",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ isCompleted: !targetTodo.isCompleted }),
-        }
+      await request(
+        `/items/${id}`,
+        HTTPMethods.PATCH,
+        HTTPHeaders.JSON,
+        JSON.stringify({ isCompleted: !targetTodo.isCompleted })
       );
-
-      if (!response.ok) {
-        console.error("Update isCompleted Error");
-        return;
-      }
     } catch (error) {
       console.error(error);
     }
@@ -46,13 +38,10 @@ export default function Home() {
   useEffect(() => {
     const fetchTodos = async () => {
       try {
-        const response = await (
-          await fetch(
-            `https://assignment-todolist-api.vercel.app/api/${seomiId}/items`
-          )
-        ).json();
+        const response = await request("/items", HTTPMethods.GET);
+        const responseValue = await response.json();
 
-        setTodos(response);
+        setTodos(responseValue);
       } catch (error) {
         console.error(error);
       }

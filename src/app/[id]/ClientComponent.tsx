@@ -2,12 +2,13 @@
 
 import DetailCheckListItem from "../component/DetailCheckLIstItem";
 
-import { EditedData, seomiId, TodoType } from "../utils/type";
+import { EditedData, TodoType } from "../utils/type";
 import { useEffect, useState } from "react";
 import AddImage from "./AddImage";
 import AddMemo from "./AddMemo";
 import Buttons from "./Buttons";
 import { useRouter } from "next/navigation";
+import { HTTPHeaders, HTTPMethods, request } from "../utils/request";
 
 interface Props {
   id: string;
@@ -45,22 +46,16 @@ export default function ClientComponent({ id }: Props) {
       if (imageFile !== null) {
         const formData = new FormData();
         formData.append("image", imageFile ?? "");
-        const formDataResponse = await fetch(
-          `https://assignment-todolist-api.vercel.app/api/${seomiId}/images/upload`,
-          {
-            method: "POST",
-            body: formData,
-          }
+
+        const uploadImageResponse = await request(
+          "/images/upload",
+          HTTPMethods.POST,
+          HTTPHeaders.FormData,
+          formData
         );
 
-        if (!formDataResponse.ok) {
-          const errorResponse = await formDataResponse.json();
-          console.log("Image upload failed:", errorResponse);
-          return;
-        }
-
-        const uploadImageResult = await formDataResponse.json();
-        const imageUrl = uploadImageResult.url;
+        const uploadImageResponseValue = await uploadImageResponse.json();
+        const imageUrl = uploadImageResponseValue.url;
 
         editedData = {
           name,
@@ -76,22 +71,13 @@ export default function ClientComponent({ id }: Props) {
         };
       }
 
-      const jsonResponse = await fetch(
-        `https://assignment-todolist-api.vercel.app/api/${seomiId}/items/${id}`,
-        {
-          method: "PATCH",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(editedData),
-        }
+      await request(
+        `/items/${id}`,
+        HTTPMethods.PATCH,
+        HTTPHeaders.JSON,
+        JSON.stringify(editedData)
       );
 
-      if (!jsonResponse.ok) {
-        const errorResponse = await jsonResponse.json();
-        console.log("Item update failed:", errorResponse);
-        return;
-      }
       router.push("/");
     } catch (error) {
       console.error(error);
@@ -100,14 +86,8 @@ export default function ClientComponent({ id }: Props) {
 
   const onDelete = async () => {
     try {
-      await fetch(
-        `https://assignment-todolist-api.vercel.app/api/${seomiId}/items/${id}`,
-        {
-          method: "DELETE",
-        }
-      );
-
-      router.back();
+      await request(`/items/${id}`, HTTPMethods.DELETE);
+      router.push("/");
     } catch (error) {
       console.error(error);
     }
@@ -116,17 +96,14 @@ export default function ClientComponent({ id }: Props) {
   useEffect(() => {
     const fetchTodos = async () => {
       try {
-        const response: TodoType = await (
-          await fetch(
-            `https://assignment-todolist-api.vercel.app/api/${seomiId}/items/${id}`
-          )
-        ).json();
-        console.log(response);
-        setTodo(response);
-        setName(response.name);
-        setMemo(response.memo ?? "");
-        setIsCompleted(response.isCompleted);
-        setImageUrl(response.imageUrl);
+        const response = await request(`/items/${id}`, HTTPMethods.GET);
+        const responseValue = await response.json();
+
+        setTodo(responseValue);
+        setName(responseValue.name);
+        setMemo(responseValue.memo ?? "");
+        setIsCompleted(responseValue.isCompleted);
+        setImageUrl(responseValue.imageUrl);
       } catch (error) {
         console.error(error);
       }

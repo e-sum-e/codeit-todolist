@@ -18,8 +18,6 @@ export type TodoType = {
   isCompleted: boolean;
 };
 
-export const seomiId = "e-sum-e";
-
 export interface EditedData {
   name: string;
   memo: string;
