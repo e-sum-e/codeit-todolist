@@ -45,13 +45,17 @@ export default function Home() {
 
   useEffect(() => {
     const fetchTodos = async () => {
-      const response = await (
-        await fetch(
-          `https://assignment-todolist-api.vercel.app/api/${seomiId}/items`
-        )
-      ).json();
+      try {
+        const response = await (
+          await fetch(
+            `https://assignment-todolist-api.vercel.app/api/${seomiId}/items`
+          )
+        ).json();
 
-      setTodos(response);
+        setTodos(response);
+      } catch (error) {
+        console.error(error);
+      }
     };
 
     fetchTodos();

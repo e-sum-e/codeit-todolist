@@ -115,17 +115,21 @@ export default function ClientComponent({ id }: Props) {
 
   useEffect(() => {
     const fetchTodos = async () => {
-      const response: TodoType = await (
-        await fetch(
-          `https://assignment-todolist-api.vercel.app/api/${seomiId}/items/${id}`
-        )
-      ).json();
+      try {
+        const response: TodoType = await (
+          await fetch(
+            `https://assignment-todolist-api.vercel.app/api/${seomiId}/items/${id}`
+          )
+        ).json();
 
-      setTodo(response);
-      setName(response.name);
-      setMemo(response.memo ?? "");
-      setIsCompleted(response.isCompleted);
-      setImageUrl(response.imageUrl);
+        setTodo(response);
+        setName(response.name);
+        setMemo(response.memo ?? "");
+        setIsCompleted(response.isCompleted);
+        setImageUrl(response.imageUrl);
+      } catch (error) {
+        console.error(error);
+      }
     };
 
     fetchTodos();
