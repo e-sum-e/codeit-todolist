@@ -9,16 +9,19 @@ import { useState } from "react";
 
 interface Props {
   checkListItems: TodoType[];
+  setTodos: (nextTodos: TodoType[]) => void;
 }
 
-export default function AddTodo({ checkListItems }: Props) {
+export default function AddTodo({ checkListItems, setTodos }: Props) {
   const [todoText, setTodoText] = useState("");
 
   const changeTodoText = (nextTodo: string) => {
     setTodoText(nextTodo);
   };
 
-  const onSubmit = async () => {
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
     try {
       await fetch(
         `https://assignment-todolist-api.vercel.app/api/${seomiId}/items`,
@@ -28,10 +31,17 @@ export default function AddTodo({ checkListItems }: Props) {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({ name: todoText }),
-          cache: "no-store",
         }
       );
-      window.location.reload();
+
+      const response = await (
+        await fetch(
+          `https://assignment-todolist-api.vercel.app/api/${seomiId}/items`
+        )
+      ).json();
+
+      setTodos(response);
+      changeTodoText("");
     } catch (error) {
       console.error(error);
     }

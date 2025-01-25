@@ -63,7 +63,7 @@ export default function Home() {
 
   return (
     <>
-      <AddTodo checkListItems={todos} />
+      <AddTodo checkListItems={todos} setTodos={setTodos} />
       <div className={`flex flex-col xl:flex-row xl:gap-[24px] xl:mt-[40px]`}>
         <Todos
           items={todos.filter((item) => item.isCompleted === false)}
