@@ -36,8 +36,6 @@ export default function AddImage({ imageUrl, onChangeImageFile }: Props) {
     setPreview(url);
   };
 
-  console.log(imageUrl);
-
   return (
     <div
       className={`flex justify-center items-center relative xl:flex-none xl:w-[384px] h-[311px]
