@@ -38,7 +38,7 @@ export default function AddTodo({ checkListItems }: Props) {
   };
 
   return (
-    <div className="flex gap-[8px]  md:gap-[16px]">
+    <form className="flex gap-[8px]  md:gap-[16px]" onSubmit={onSubmit}>
       <TodoInput todo={todoText} changeTodo={changeTodoText} />
       <TextButton
         icon={checkListItems.length > 0 ? <PlusBlackIcon /> : <PlusWhiteIcon />}
@@ -49,8 +49,8 @@ export default function AddTodo({ checkListItems }: Props) {
         style={`flex-none [&>div]:hidden [&>div]:md:block ${
           checkListItems.length === 0 && "text-white"
         }`}
-        onClick={onSubmit}
+        onClick={() => {}}
       />
-    </div>
+    </form>
   );
 }
