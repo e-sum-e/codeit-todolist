@@ -16,6 +16,19 @@ export default function AddImage({ imageUrl, onChangeImageFile }: Props) {
   const handleChangeImageUrl = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!e.target.files) return;
 
+    /* 파일 이름 영어로 제한 */
+    const validFileName = /^[a-zA-Z0-9-_]+(\.[a-zA-Z0-9]+)?$/;
+    if (!validFileName.test(e.target.files[0].name)) {
+      alert("영어로 된 파일만 업로드 가능합니다.");
+      return;
+    }
+
+    /* 파일 사이즈 5MB 제한 */
+    if (e.target.files[0].size > 5 * 1024 * 1024) {
+      alert("5MB 이하의 파일만 업로드 가능합니다.");
+      return;
+    }
+
     const file = e.target.files[0];
     const url = window.URL.createObjectURL(file);
 
