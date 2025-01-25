@@ -121,7 +121,7 @@ export default function ClientComponent({ id }: Props) {
             `https://assignment-todolist-api.vercel.app/api/${seomiId}/items/${id}`
           )
         ).json();
-
+        console.log(response);
         setTodo(response);
         setName(response.name);
         setMemo(response.memo ?? "");
@@ -140,6 +140,7 @@ export default function ClientComponent({ id }: Props) {
   return (
     <div className={`xl:px-[102px]`}>
       <DetailCheckListItem
+        currentName={todo.name}
         name={name}
         onChangeName={onChangeName}
         isCompleted={isCompleted}
@@ -151,7 +152,11 @@ export default function ClientComponent({ id }: Props) {
           imageFile={imageFile}
           onChangeImageFile={onChangeImageFile}
         />
-        <AddMemo memo={memo} onChangeMemo={onChangeMemo} />
+        <AddMemo
+          currentMemo={todo.memo}
+          memo={memo}
+          onChangeMemo={onChangeMemo}
+        />
       </div>
       <Buttons onSubmit={onSubmit} onDelete={onDelete} />
     </div>
